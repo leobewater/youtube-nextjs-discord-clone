@@ -13,4 +13,5 @@ Video: https://www.youtube.com/watch?v=ZbX4Ok9YX94&ab_channel=CodeWithAntonio
 > npm i next-themes
 > npm i -D prisma
 > npx prisma init
+## using docker mysql instead of planetscale.com
 ```
