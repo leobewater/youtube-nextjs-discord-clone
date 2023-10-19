@@ -8,4 +8,6 @@ Video: https://www.youtube.com/watch?v=ZbX4Ok9YX94&ab_channel=CodeWithAntonio
 
 > npx shadcn-ui@latest init
 > npx shadcn-ui@latest add
+
+> npm install @clerk/nextjs
 ```
