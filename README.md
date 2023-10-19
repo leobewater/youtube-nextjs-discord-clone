@@ -18,4 +18,5 @@ Video: https://www.youtube.com/watch?v=ZbX4Ok9YX94&ab_channel=CodeWithAntonio
 ## using local docker mysql instead of planetscale.com
 > npx prisma generate
 > npx prisma db push
+> npx prisma studio
 ```
