@@ -1,8 +1,6 @@
-import React from 'react'
-
 const ServerIdPage = () => {
   return (
-    <div>ServerIdPage</div>
+    <div>Server Id Page</div>
   )
 }
 
