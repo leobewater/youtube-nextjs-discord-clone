@@ -4,6 +4,8 @@ import axios from "axios";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { useEffect } from "react";
+
 import {
   Dialog,
   DialogContent,
@@ -36,10 +38,11 @@ const formSchema = z.object({
 });
 
 export const EditServerModal = () => {
-  const { isOpen, onClose, type } = useModal();
+  const { isOpen, onClose, type, data } = useModal();
   const router = useRouter();
 
   const isModalOpen = isOpen && type === "editServer";
+  const { server } = data;
 
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -49,13 +52,21 @@ export const EditServerModal = () => {
     },
   });
 
+  // set form value when load
+  useEffect(() => {
+    if (server) {
+      form.setValue("name", server.name);
+      form.setValue("imageUrl", server.imageUrl);
+    }
+  }, [server, form]);
+
   const isSubmitting = form.formState.isSubmitting;
 
-  // create server
+  // update server
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     // console.log(values);
     try {
-      await axios.post("/api/servers", values);
+      await axios.patch(`/api/servers/${server?.id}`, values);
 
       form.reset();
       router.refresh();
@@ -125,7 +136,7 @@ export const EditServerModal = () => {
             </div>
             <DialogFooter className="bg-gray-100 px-6 py-4">
               <Button variant="primary" disabled={isSubmitting}>
-                Create
+                Save
               </Button>
             </DialogFooter>
           </form>
