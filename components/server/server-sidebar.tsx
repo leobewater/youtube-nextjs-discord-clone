@@ -36,10 +36,6 @@ export const ServerSidebar = async ({ serverId }: ServerSidebarProps) => {
     },
   });
 
-  if (!server) {
-    return redirect("/");
-  }
-
   const textChannels = server?.channels.filter(
     (channel) => channel.type === ChannelType.TEXT
   );
@@ -53,6 +49,11 @@ export const ServerSidebar = async ({ serverId }: ServerSidebarProps) => {
   const members = server?.members.filter(
     (member) => member.profileId !== profile.id
   );
+
+  if (!server) {
+    return redirect("/");
+  }
+
   // get signed in user's role
   const role = server.members.find(
     (member) => member.profileId === profile.id
