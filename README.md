@@ -11,7 +11,9 @@ Video: https://www.youtube.com/watch?v=ZbX4Ok9YX94&ab_channel=CodeWithAntonio
 
 > npm i @clerk/nextjs
 > npm i next-themes
+
 > npm i -D prisma
+> npm i @prisma/client
 > npx prisma init
 ## using local docker mysql instead of planetscale.com
 > npx prisma generate
