@@ -53,6 +53,29 @@ export const MembersModal = () => {
   // fix type warning
   const { server } = data as { server: ServerWithMembersWithProfiles };
 
+  const onKick = async (memberId: string) => {
+    try {
+      setLoadingId(memberId);
+      const url = qs.stringifyUrl({
+        url: `/api/members/${memberId}`,
+        query: {
+          serverId: server?.id,
+        },
+      });
+
+      const response = await axios.delete(url);
+
+      router.refresh();
+
+      // refresh modal with new data
+      onOpen("members", { server: response.data });
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoadingId("");
+    }
+  };
+
   const onRoleChange = async (memberId: string, role: MemberRole) => {
     try {
       setLoadingId(memberId);
@@ -60,7 +83,6 @@ export const MembersModal = () => {
         url: `/api/members/${memberId}`,
         query: {
           serverId: server?.id,
-          memberId,
         },
       });
 
