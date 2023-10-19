@@ -1,22 +1,23 @@
 "use client";
 
+import axios from "axios";
+import { Check, Copy, RefreshCw } from "lucide-react";
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
+
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useModal } from "@/hooks/use-modal-store";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import { useOrigin } from "@/hooks/use-origin";
-import { Check, Copy, RefreshCw } from "lucide-react";
-import axios from "axios";
 
 export const InviteModal = () => {
-  const { isOpen, onOpen, onClose, type, data } = useModal();
+  const { onOpen, isOpen, onClose, type, data } = useModal();
   const origin = useOrigin();
 
   const isModalOpen = isOpen && type === "invite";
@@ -82,7 +83,7 @@ export const InviteModal = () => {
             disabled={isLoading}
             variant="link"
             size="sm"
-            className="text-xs text-zinc-500 mt-4 pl-2"
+            className="text-xs text-zinc-500 mt-4"
           >
             Generate a new link
             <RefreshCw className="h-4 w-4 ml-2" />
