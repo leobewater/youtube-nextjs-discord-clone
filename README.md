@@ -22,4 +22,6 @@ Video: https://www.youtube.com/watch?v=ZbX4Ok9YX94&ab_channel=CodeWithAntonio
 
 ## uploadthing.com
 > npm i uploadthing @uploadthing/react
+
+> npm i axios 
 ```
