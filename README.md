@@ -10,4 +10,5 @@ Video: https://www.youtube.com/watch?v=ZbX4Ok9YX94&ab_channel=CodeWithAntonio
 > npx shadcn-ui@latest add
 
 > npm install @clerk/nextjs
+> npm i next-themes
 ```
