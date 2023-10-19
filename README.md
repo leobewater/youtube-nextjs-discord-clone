@@ -19,4 +19,7 @@ Video: https://www.youtube.com/watch?v=ZbX4Ok9YX94&ab_channel=CodeWithAntonio
 > npx prisma generate
 > npx prisma db push
 > npx prisma studio
+
+## uploadthing.com
+> npm i uploadthing @uploadthing/react
 ```
