@@ -2,7 +2,6 @@ import { NavigationAction } from "@/components/navigation/navigation-action";
 import { currentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
 import { redirect } from "next/navigation";
-import React from "react";
 
 export const NavigationSidebar = async () => {
   const profile = await currentProfile();
