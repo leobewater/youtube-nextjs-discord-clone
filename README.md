@@ -27,4 +27,6 @@ Video: https://www.youtube.com/watch?v=ZbX4Ok9YX94&ab_channel=CodeWithAntonio
 
 > npm i uuid
 > npm i -D @types/uuid
+
+> npm i zustand
 ```
