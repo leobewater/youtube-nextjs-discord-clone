@@ -1,8 +1,9 @@
 "use client";
 
+import { ActionTooltip } from "@/components/action-tooltip";
 import { cn } from "@/lib/utils";
 import { Channel, ChannelType, MemberRole, Server } from "@prisma/client";
-import { Hash, Mic, Video } from "lucide-react";
+import { Edit, Hash, Lock, Mic, Trash, Video } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
 
 interface ServerChannelProps {
@@ -38,13 +39,34 @@ export const ServerChannel = ({
       <Icon className="flex-shrink-0 h-5 w-5 text-zinc-500 dark:text-zinc-400" />
       <p
         className={cn(
-          "line-clamp-1 font-semibold text-sm text-zinc-500 group-hover:text-zinc-600 dark:text-zinc-400 dark:group-hover:text-zinc-300 transition",
+          "line-clamp-1 text-left font-semibold text-sm text-zinc-500 group-hover:text-zinc-600 dark:text-zinc-400 dark:group-hover:text-zinc-300 transition",
           params?.channelId === channel.id &&
             "text-primary dark:text-zinc-200 dark-group-hover:text-white"
         )}
       >
         {channel.name}
       </p>
+      {/* Admin or Moderator */}
+      {channel.name.toLowerCase() !== "general" &&
+        role !== MemberRole.GUEST && (
+          <div className="ml-auto flex items-center gap-x-2">
+            <ActionTooltip label="Edit" side="top">
+              <Edit
+                onClick={() => {}}
+                className="hidden group-hover:block h-4 w-4 text-zinc-500 hover:text-zinc-600 dark:text-zinc-400 dark:hover:text-zinc-300 transition"
+              />
+            </ActionTooltip>
+            <ActionTooltip label="Edit" side="top">
+              <Trash
+                onClick={() => {}}
+                className="hidden group-hover:block h-4 w-4 text-zinc-500 hover:text-zinc-600 dark:text-zinc-400 dark:hover:text-zinc-300 transition"
+              />
+            </ActionTooltip>
+          </div>
+        )}
+      {channel.name.toLowerCase() === "general" && (
+        <Lock className="ml-auto h-4 w-4 text-zinc-500 dark:text-zinc-400 " />
+      )}
     </button>
   );
 };
