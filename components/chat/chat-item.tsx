@@ -88,7 +88,7 @@ export const ChatItem = ({
     },
   });
 
-  const isLoading = form.formState.isSubmitting;
+  const isSubmitting = form.formState.isSubmitting;
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
@@ -110,7 +110,7 @@ export const ChatItem = ({
     form.reset({
       content: content,
     });
-  }, [content]);
+  }, [form, content]);
 
   const fileType = fileUrl?.split(".").pop();
 
@@ -208,7 +208,7 @@ export const ChatItem = ({
                       <FormControl>
                         <div className="relative w-full">
                           <Input
-                            disabled={isLoading}
+                            disabled={isSubmitting}
                             className="p-2 bg-zinc-200/90 dark:bg-zinc-700/75 border-none border-0 focus-visible:ring-0 focus-visible:ring-offset-0 text-zinc-600 dark:text-zinc-200"
                             placeholder="Edited message"
                             {...field}
@@ -218,7 +218,7 @@ export const ChatItem = ({
                     </FormItem>
                   )}
                 />
-                <Button disabled={isLoading} size="sm" variant="primary">
+                <Button disabled={isSubmitting} size="sm" variant="primary">
                   Save
                 </Button>
               </form>
