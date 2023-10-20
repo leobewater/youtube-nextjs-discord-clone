@@ -33,4 +33,6 @@ Video: https://www.youtube.com/watch?v=ZbX4Ok9YX94&ab_channel=CodeWithAntonio
 
 > npm i socket.io
 > npm i socket.io-client
+
+> npm i emoji-mart @emoji-mart/data @emoji-mart/react
 ```
