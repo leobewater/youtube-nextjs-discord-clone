@@ -2,8 +2,9 @@
 
 import { ActionTooltip } from "@/components/action-tooltip";
 import { UserAvatar } from "@/components/user-avatar";
-import { Member, Profile } from "@prisma/client";
+import { Member, MemberRole, Profile } from "@prisma/client";
 import { ShieldAlert, ShieldCheck } from "lucide-react";
+import Image from "next/image";
 
 interface ChatItemProps {
   id: string;
@@ -38,6 +39,16 @@ export const ChatItem = ({
   socketUrl,
   socketQuery,
 }: ChatItemProps) => {
+  const fileType = fileUrl?.split(".").pop();
+
+  const isAdmin = currentMember.role === MemberRole.ADMIN;
+  const isModerator = currentMember.role === MemberRole.MODERATOR;
+  const isOwner = currentMember.id === member.id;
+  const canDeleteMessage = !deleted && (isAdmin || isModerator || isOwner);
+  const canEditMessage = !deleted && isOwner && !fileUrl;
+  const isPDF = fileType === "pdf" && fileUrl;
+  const isImage = !isPDF && fileUrl;
+
   return (
     <div className="relative group flex items-center hover:bg-black/5 p-4 transition w-full">
       <div className="group flex gap-x-2 items-start w-full">
@@ -58,7 +69,21 @@ export const ChatItem = ({
               {timestamp}
             </span>
           </div>
-          {content}
+          {isImage && (
+            <a
+              href={fileUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative aspect-square rounded-md mt-2 overflow-hidden flex items-center bg-transparent h-48 w-48"
+            >
+              <Image
+                fill
+                src={fileUrl}
+                alt="Content"
+                className="object-cover "
+              />
+            </a>
+          )}
         </div>
       </div>
     </div>
