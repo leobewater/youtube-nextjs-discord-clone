@@ -14,7 +14,7 @@ export async function DELETE(
     }
 
     if (!params.serverId) {
-      return new NextResponse("Missing Server ID", { status: 401 });
+      return new NextResponse("Missing Server ID", { status: 400 });
     }
 
     // delete server by admin
@@ -27,7 +27,7 @@ export async function DELETE(
 
     return NextResponse.json(server);
   } catch (error) {
-    console.log(["SERVER_ID_DELETE", error]);
+    console.log("[SERVER_ID_DELETE]", error);
     return new NextResponse("Internal Error", { status: 500 });
   }
 }
@@ -63,7 +63,7 @@ export async function PATCH(
 
     return NextResponse.json(server);
   } catch (error) {
-    console.log(["SERVER_ID_PATCH", error]);
+    console.log("[SERVER_ID_PATCH]", error);
     return new NextResponse("Internal Error", { status: 500 });
   }
 }

@@ -15,7 +15,7 @@ export async function PATCH(
       return new NextResponse("Unauthorized", { status: 401 });
     }
     if (!params.serverId) {
-      return new NextResponse("Missing Server ID", { status: 401 });
+      return new NextResponse("Missing Server ID", { status: 400 });
     }
 
     // allow non-admin to leave the server
@@ -43,7 +43,7 @@ export async function PATCH(
 
     return NextResponse.json(server);
   } catch (error) {
-    console.log(["SERVER_ID_LEAVE", error]);
+    console.log("[SERVER_ID_LEAVE]", error);
     return new NextResponse("Internal Error", { status: 500 });
   }
 }
