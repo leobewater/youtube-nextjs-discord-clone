@@ -1,5 +1,5 @@
 import { MobileToggle } from "@/components/mobile.toogle";
-import { Hash, Menu } from "lucide-react";
+import { Hash } from "lucide-react";
 
 interface ChatHeaderProps {
   serverId: string;
