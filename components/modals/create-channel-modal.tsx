@@ -95,7 +95,8 @@ export const CreateChannelModal = () => {
   };
 
   const handleClose = () => {
-    form.reset();
+    form.setValue("name", "");
+    //form.reset();
     onClose();
   };
 
