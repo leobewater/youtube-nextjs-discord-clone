@@ -31,7 +31,7 @@ export async function GET(req: Request) {
           id: cursor,
         },
         where: {
-          channelId: channelId,
+          channelId,
         },
         include: {
           member: {
@@ -70,10 +70,10 @@ export async function GET(req: Request) {
 
     return NextResponse.json({
       items: messages,
-      cursor: nextCursor,
+      nextCursor
     });
   } catch (error) {
     console.log("[MESSAGES_GET]", error);
-    return new NextResponse("Internall Error", { status: 500 });
+    return new NextResponse("Internal Error", { status: 500 });
   }
 }
