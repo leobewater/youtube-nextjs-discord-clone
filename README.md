@@ -30,4 +30,7 @@ Video: https://www.youtube.com/watch?v=ZbX4Ok9YX94&ab_channel=CodeWithAntonio
 
 > npm i zustand
 > npm i query-string
+
+> npm i socket.io
+> npm i socket.io-client
 ```
