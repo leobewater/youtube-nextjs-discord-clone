@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 export const SocketIndicator = () => {
   const { isConnected } = useSocket();
 
-  if (isConnected) {
+  if (!isConnected) {
     return (
       <Badge variant="outline" className="bg-yellow-600 text-white border-none">
         Fallback: Polling every 1s

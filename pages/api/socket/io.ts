@@ -6,7 +6,7 @@ import { NextApiResponseServerIo } from "@/types";
 
 export const config = {
   api: {
-    bodyParse: false,
+    bodyParser: false,
   },
 };
 
