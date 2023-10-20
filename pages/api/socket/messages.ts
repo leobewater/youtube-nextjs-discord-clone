@@ -84,7 +84,7 @@ export default async function handler(
       },
     });
 
-    // create channelKey for socket.io and dispatch messages
+    // create channelKey for socket.io and dispatch message
     const channelKey = `chat:${channelId}:messages`
     res?.socket?.server?.io?.emit(channelKey, message);
 
