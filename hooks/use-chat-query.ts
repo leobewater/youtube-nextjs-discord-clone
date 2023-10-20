@@ -26,14 +26,14 @@ export const useChatQuery = ({
       {
         url: apiUrl,
         query: {
-          cursor: pageParam, // passing page number to query
+          cursor: pageParam || undefined, // passing page number to query
           [paramKey]: paramValue,
         },
       },
       { skipNull: true }
     );
 
-    const res = await fetch(apiUrl);
+    const res = await fetch(url);
     return res.json();
   };
 
