@@ -1,21 +1,30 @@
-import { ChatHeader } from "@/components/chat/chat-header";
-import { ChatInput } from "@/components/chat/chat-input";
-import { ChatMessages } from "@/components/chat/chat-messages";
-import { getOrCreateConversation } from "@/lib/conversation";
-import { currentProfile } from "@/lib/current-profile";
-import { db } from "@/lib/db";
 import { redirectToSignIn } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
+
+import { db } from "@/lib/db";
+import { getOrCreateConversation } from "@/lib/conversation";
+import { currentProfile } from "@/lib/current-profile";
+import { ChatHeader } from "@/components/chat/chat-header";
+import { ChatMessages } from "@/components/chat/chat-messages";
+import { ChatInput } from "@/components/chat/chat-input";
+import { MediaRoom } from "@/components/media-room";
 
 interface MemberIdPageProps {
   params: {
     memberId: string;
     serverId: string;
-  };
+  },
+  searchParams: {
+    video?: boolean;
+  }
 }
 
-const MemberIdPage = async ({ params }: MemberIdPageProps) => {
+const MemberIdPage = async ({
+  params,
+  searchParams,
+}: MemberIdPageProps) => {
   const profile = await currentProfile();
+
   if (!profile) {
     return redirectToSignIn();
   }
@@ -58,6 +67,15 @@ const MemberIdPage = async ({ params }: MemberIdPageProps) => {
         serverId={params.serverId}
         type="conversation"
       />
+      {searchParams.video && (
+        <MediaRoom
+          chatId={conversation.id}
+          video={true}
+          audio={true}
+        />
+      )}
+      {!searchParams.video && (
+        <>
       <ChatMessages
         member={currentMember}
         name={otherMember.profile.name}
@@ -73,12 +91,14 @@ const MemberIdPage = async ({ params }: MemberIdPageProps) => {
       />
       <ChatInput
         name={otherMember.profile.name}
-        type="channel"
+        type="conversation"
         apiUrl="/api/socket/direct-messages"
         query={{
           conversationId: conversation.id,
         }}
-      />{" "}
+          />
+        </>
+      )}
     </div>
   );
 };

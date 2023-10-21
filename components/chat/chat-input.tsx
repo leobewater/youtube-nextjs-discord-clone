@@ -16,7 +16,7 @@ interface ChatInputProps {
   apiUrl: string;
   query: Record<string, any>;
   name: string;
-  type: "converation" | "channel";
+  type: "conversation" | "channel";
 }
 
 const formSchema = z.object({
