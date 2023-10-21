@@ -14,21 +14,20 @@ export default async function handler(
 
   try {
     const profile = await currentProfilePages(req);
-    const { content, fileUrl } = req.body;
-    const { conversationId } = req.query;
-    
     if (!profile) {
       return res.status(401).json({ error: "Unauthorized" });
     }    
+
+    const { content, fileUrl } = req.body;
+    const { conversationId } = req.query;
   
     if (!conversationId) {
-      return res.status(400).json({ error: "Conversation ID missing" });
+      return res.status(400).json({ error: "Missing Conversation ID" });
     }
           
     if (!content) {
-      return res.status(400).json({ error: "Content missing" });
+      return res.status(400).json({ error: "Missing Content" });
     }
-
 
     const conversation = await db.conversation.findFirst({
       where: {
@@ -87,7 +86,6 @@ export default async function handler(
     });
 
     const channelKey = `chat:${conversationId}:messages`;
-
     res?.socket?.server?.io?.emit(channelKey, message);
 
     return res.status(200).json(message);

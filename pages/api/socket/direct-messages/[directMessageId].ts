@@ -23,7 +23,7 @@ export default async function handler(
     }
 
     if (!conversationId) {
-      return res.status(400).json({ error: "Conversation ID missing" });
+      return res.status(400).json({ error: "Missing Conversation ID" });
     }
 
     const conversation = await db.conversation.findFirst({
@@ -136,7 +136,6 @@ export default async function handler(
     }
 
     const updateKey = `chat:${conversation.id}:messages:update`;
-
     res?.socket?.server?.io?.emit(updateKey, directMessage);
 
     return res.status(200).json(directMessage);
