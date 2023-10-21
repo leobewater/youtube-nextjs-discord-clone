@@ -37,4 +37,7 @@ Video: https://www.youtube.com/watch?v=ZbX4Ok9YX94&ab_channel=CodeWithAntonio
 > npm i emoji-mart @emoji-mart/data @emoji-mart/react
 > npm i @tanstack/react-query
 > npm i date-fns
+
+## livekit.io
+> npm i livekit-server-sdk livekit-client @livekit/components-react @livekit/components-styles --save
 ```
