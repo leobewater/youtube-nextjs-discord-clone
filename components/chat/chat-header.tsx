@@ -1,4 +1,4 @@
-import { MobileToggle } from "@/components/mobile-toogle";
+import { MobileToggle } from "@/components/mobile-toggle";
 import { SocketIndicator } from "@/components/socket-indicator";
 import { UserAvatar } from "@/components/user-avatar";
 import { Hash } from "lucide-react";
