@@ -7,6 +7,7 @@ import { Member, Message, Profile } from "@prisma/client";
 import { Loader2, ServerCrash } from "lucide-react";
 import { ChatItem } from "@/components/chat/chat-item";
 import { format } from "date-fns";
+import { useChatSocket } from "@/hooks/use-chat-socket";
 
 const DATE_FORMAT = "d MMM yyyy, HH:mm";
 
@@ -37,7 +38,11 @@ export const ChatMessages = ({
   paramValue,
   type,
 }: ChatMessagesProps) => {
+  // keys must match in socket.io api routes
   const queryKey = `chat:${chatId}`;
+  const addKey = `chat:${chatId}:messages`;
+  const updateKey = `chat:${chatId}:messages:update`;
+
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, status } =
     useChatQuery({
       queryKey,
@@ -45,6 +50,13 @@ export const ChatMessages = ({
       paramKey,
       paramValue,
     });
+
+  // update message realtime
+  useChatSocket({
+    queryKey,
+    addKey,
+    updateKey,
+  });
 
   if (status === "pending") {
     return (
