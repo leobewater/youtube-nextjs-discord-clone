@@ -18,7 +18,7 @@ export const useChatQuery = ({
   const { isConnected } = useSocket();
 
   const fetchMessages = async ({
-    pageParam = undefined,
+    pageParam = 1
   }: {
     pageParam: number | undefined;
   }) => {
@@ -43,7 +43,7 @@ export const useChatQuery = ({
       queryFn: fetchMessages,
       initialPageParam: 0,
       getNextPageParam: (lastPage) => lastPage?.nextCursor,
-      refetchInterval: isConnected ? false : 1000,
+      refetchInterval: isConnected ? false : 500,
     });
 
   return {
